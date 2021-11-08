@@ -10,3 +10,16 @@
   - set initial state
   - set up the reducer in the slice (handles updating state)
   - export the created actions and the reducer
+
+Redux TypeScript
+
+RootState
+- describes the type / shape of state
+
+- Used throughout the application
+  - to create a typed version of useSelector (useAppSelector)
+  - used to type check state in callback to useAppSelector
+
+Create Typed versions of
+- useDispatch (useAppDispatch)
+- useSelector (useAppSelector)
