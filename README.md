@@ -18,6 +18,7 @@ Redux Toolkit
 - often has naming convention off "domain/eventName"
 - Action object can hold additional information about the event
   - The payload
+- Should include minimal amount of information to describe what happened
 
 Example
 ```js
@@ -42,7 +43,7 @@ const addTodo = (text) => {
 
 #### Reducer
 - A function that listens for a particular action and updates state
-- takes in current state and an action object
+- Takes information from action, current state and runs logic of updating state
 - (state, action) => newState
 - Named after familiar reduce() method
 
@@ -51,6 +52,11 @@ const addTodo = (text) => {
 - do not modify existing state directly
   - make immutable updates
   - copy existing state and update copy
+- Reducer must not have side effects
+  - Cannot make AJAX calls
+  - run asynchronous code
+  - pure functions are more predictable, easier to test
+  - un-pure reducers can be a common source of bugs
 
 #### Reducer Steps
 1. check action type to determine current procedure
@@ -129,3 +135,22 @@ RootState
 Create Typed versions of
 - useDispatch (useAppDispatch)
 - useSelector (useAppSelector)
+
+### Redux Toolkit - Additional Notes
+
+Reducer Slices
+- Slice is a collection of reducer logic and actions for a single feature
+- A slice is usually contained in a single file
+- Reducer slices are passed to `configureStore` which will call `combineReducers` behind the scenes to create a single reducer.
+
+`createSlice`
+- Automatically creates actions that correspond to reducers.
+- Allows for writing "mutable" - uses Immer library, works as a proxy to wrap mutable code and make it immutable.
+- Immer allows us to not return a state value.
+
+### Thunk Function
+A special kind of Redux function that can contain asynchronous logic.
+
+
+
+
